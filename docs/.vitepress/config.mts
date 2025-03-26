@@ -1,11 +1,16 @@
 import { defineConfig } from 'vitepress'
 import { chineseSearchOptimize, pagefindPlugin } from 'vitepress-plugin-pagefind'
+import { writeFileSync } from 'fs'
+
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Devlog",
   description: "XUEの開発ログ",
-  base: '/',
+  base: '',
+  buildEnd: async () => {
+    writeFileSync('./docs/.vitepress/dist/CNAME', 'devlog.xue.com')
+  },
   dir: 'docs',
   cleanUrls: true,
   themeConfig: {
